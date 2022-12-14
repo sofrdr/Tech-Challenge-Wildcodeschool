@@ -13,6 +13,7 @@ const HeaderImg = styled.img`
 
 const HeaderTitle = styled.h1`
   font-size: 2.5em;
+  font-weight: 500;
 `;
 
 const Header = () => {
