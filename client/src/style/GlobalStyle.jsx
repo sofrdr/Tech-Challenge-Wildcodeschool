@@ -10,6 +10,11 @@ body{
 h1, h2 {
     text-align: center;
   }
+
+main {
+    max-width: 960px;
+    margin: 0 auto;
+  }
 `;
 
 const GlobalStyle = () => {
