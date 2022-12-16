@@ -18,12 +18,26 @@ const Form = () => {
     setName(e.target.value);
   };
 
-  const createNewMember = async () => {};
+  const createNewMember = async ({ name }) => {
+    const response = await fetch("http://localhost:3001/api/crew", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name }),
+    });
+    const data = response.json();
+    console.log(data);
+    return data;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createNewMember({ name });
+  };
 
   return (
     <div>
       <h2>Ajouter un(e) Argonaute</h2>
-      <NewMemberForm>
+      <NewMemberForm onSubmit={handleSubmit}>
         <FormLabel htmlFor="name">Nom de l'argonaute</FormLabel>
         <input
           id="name"
