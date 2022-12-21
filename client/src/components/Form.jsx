@@ -1,4 +1,5 @@
-import { React, useState } from "react";
+import { React, useContext, useState } from "react";
+import { AppContext } from "../utils/context";
 import styled from "styled-components";
 
 const NewMemberForm = styled.form`
@@ -13,20 +14,26 @@ const FormLabel = styled.label`
 
 const Form = () => {
   const [name, setName] = useState("");
+  const { setIsPosting } = useContext(AppContext);
 
   const handleChange = (e) => {
     setName(e.target.value);
   };
 
   const createNewMember = async ({ name }) => {
-    const response = await fetch("http://localhost:3001/api/crew", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name }),
-    });
-    const data = await response.json();
-    console.log(data);
-    return data;
+    setIsPosting(true);
+    try {
+      const response = await fetch("http://localhost:3001/api/crew", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name }),
+      });
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSubmit = (e) => {

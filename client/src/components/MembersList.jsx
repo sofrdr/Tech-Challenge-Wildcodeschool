@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AppContext } from "../utils/context";
 import styled from "styled-components";
 
 const ListContainer = styled.div`
@@ -15,6 +16,7 @@ const ListItem = styled.div`
 
 const MembersList = () => {
   const [members, setMembers] = useState([]);
+  const { isPosting, setIsPosting } = useContext(AppContext);
 
   const getMembers = async () => {
     const response = await fetch("http://localhost:3001/api/crew");
@@ -29,11 +31,12 @@ const MembersList = () => {
     });
 
     setMembers(newMembers);
+    setIsPosting(false);
   };
 
   useEffect(() => {
     getMembers();
-  }, []);
+  }, [isPosting]);
 
   return (
     <section>
