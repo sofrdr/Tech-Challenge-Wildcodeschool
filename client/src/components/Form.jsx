@@ -36,7 +36,7 @@ const Form = () => {
   };
 
   return (
-    <div>
+    <section>
       <h2>Ajouter un(e) Argonaute</h2>
       <NewMemberForm onSubmit={handleSubmit}>
         <FormLabel htmlFor="name">Nom de l'argonaute</FormLabel>
@@ -50,7 +50,7 @@ const Form = () => {
         />
         <button type="submit">Envoyer</button>
       </NewMemberForm>
-    </div>
+    </section>
   );
 };
 
