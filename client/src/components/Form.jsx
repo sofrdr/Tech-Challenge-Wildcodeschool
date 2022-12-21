@@ -24,7 +24,7 @@ const Form = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name }),
     });
-    const data = response.json();
+    const data = await response.json();
     console.log(data);
     return data;
   };
@@ -32,6 +32,7 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createNewMember({ name });
+    setName("");
   };
 
   return (
@@ -44,6 +45,7 @@ const Form = () => {
           name="name"
           type="text"
           placeholder="Charalampos"
+          value={name}
           onChange={handleChange}
         />
         <button type="submit">Envoyer</button>
