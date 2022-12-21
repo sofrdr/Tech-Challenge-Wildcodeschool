@@ -9,6 +9,7 @@ const HeaderContainer = styled.header`
 
 const HeaderImg = styled.img`
   max-width: 96px;
+  margin-right: 10px;
 `;
 
 const HeaderTitle = styled.h1`
