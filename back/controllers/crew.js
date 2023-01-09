@@ -18,9 +18,11 @@ exports.addMember = async (req, res) => {
   const { name } = req.body;
 
   try {
+    // If the field is empty an error is send
     if (validator.isEmpty(name, { ignore_whitespace: true })) {
       throw new Error("Champ vide");
     }
+    // Numbers and special characters are not allowed
     if (
       validator.matches(
         name,
@@ -29,6 +31,7 @@ exports.addMember = async (req, res) => {
     ) {
       throw new Error("Caractères non autorisés");
     }
+    // The number of characters is limited to 50
     if (validator.isLength(name, { max: 50 }) === false) {
       throw new Error("Le nom saisi dépasse les 50 caractères autorisés");
     }
