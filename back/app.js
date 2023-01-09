@@ -7,7 +7,7 @@ const crewRoutes = require("./routes/crew");
 
 const USER = process.env.USER;
 const PASSWORD = process.env.PASSWORD;
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // DB connection
 
