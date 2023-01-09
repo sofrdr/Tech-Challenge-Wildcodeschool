@@ -16,10 +16,12 @@ const Form = () => {
   const [name, setName] = useState("");
   const { setIsPosting } = useContext(AppContext);
 
+  // Changing the state when user is typing
   const handleChange = (e) => {
     setName(e.target.value);
   };
 
+  // Function to add a new member to database
   const createNewMember = async ({ name }) => {
     setIsPosting(true);
     try {
@@ -36,6 +38,7 @@ const Form = () => {
     }
   };
 
+  // On submit data is send to the database and form's field is reinitialized
   const handleSubmit = (e) => {
     e.preventDefault();
     createNewMember({ name });

@@ -18,6 +18,8 @@ const MembersList = () => {
   const [members, setMembers] = useState([]);
   const { isPosting, setIsPosting } = useContext(AppContext);
 
+  // Getting list of members from API
+
   const getMembers = async () => {
     const response = await fetch("http://localhost:3001/api/crew");
     const data = await response.json();
@@ -34,6 +36,7 @@ const MembersList = () => {
     setIsPosting(false);
   };
 
+  // Calling API at every change of state (when a new member is added)
   useEffect(() => {
     getMembers();
   }, [isPosting]);
