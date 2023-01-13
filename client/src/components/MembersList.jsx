@@ -15,31 +15,7 @@ const ListItem = styled.div`
 `;
 
 const MembersList = () => {
-  const [members, setMembers] = useState([]);
-  const { isPosting, setIsPosting } = useContext(AppContext);
-
-  // Getting list of members from API
-
-  const getMembers = async () => {
-    const response = await fetch("http://localhost:3001/api/crew");
-    const data = await response.json();
-
-    const newMembers = data.map((item) => {
-      const { name, _id } = item;
-      return {
-        name: name,
-        id: _id,
-      };
-    });
-
-    setMembers(newMembers);
-    setIsPosting(false);
-  };
-
-  // Calling API at every change of state (when a new member is added)
-  useEffect(() => {
-    getMembers();
-  }, [isPosting]);
+  const { members } = useContext(AppContext);
 
   return (
     <section>

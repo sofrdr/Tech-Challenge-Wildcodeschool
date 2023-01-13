@@ -14,7 +14,7 @@ const FormLabel = styled.label`
 
 const Form = () => {
   const [name, setName] = useState("");
-  const { setIsPosting } = useContext(AppContext);
+  const { members, setMembers } = useContext(AppContext);
 
   // Changing the state when user is typing
   const handleChange = (e) => {
@@ -23,7 +23,6 @@ const Form = () => {
 
   // Function to add a new member to database
   const createNewMember = async ({ name }) => {
-    setIsPosting(true);
     try {
       const response = await fetch("http://localhost:3001/api/crew", {
         method: "POST",
@@ -32,7 +31,8 @@ const Form = () => {
       });
       const data = await response.json();
       console.log(data);
-      return data;
+      const { newMember } = data;
+      return newMember;
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +41,10 @@ const Form = () => {
   // On submit data is send to the database and form's field is reinitialized
   const handleSubmit = (e) => {
     e.preventDefault();
-    createNewMember({ name });
+    const newMember = createNewMember({ name });
+    const newData = members;
+    newData.push(newMember.name);
+    setMembers(newData);
     setName("");
   };
 
